@@ -1,11 +1,26 @@
 import React from 'react';
 import { Route,Switch} from "react-router-dom";
-import Clock from './Clock';
-import Information from './Information';
-import Details from './Details';
 
 
 
+import Loadable from 'react-loadable';
+
+const Loading = () => <div>Loading...</div>;
+
+const Clock1 = Loadable({
+  loader: () => import('./Clock'),
+  loading: Loading,
+});
+
+const Details1 = Loadable({
+  loader: () => import('./Details'),
+  loading: Loading,
+});
+
+const Information1= Loadable({
+    loader : () => import('./Information'),
+    loading : Loading,
+});
 
 
 const RenderComp =()=>{
@@ -13,9 +28,9 @@ const RenderComp =()=>{
     return (
         <div className='Component'>            
             <Switch >
-                <Route exact path='/' component={Clock}/>
-                <Route path='/Information'  component={Information}/>
-                <Route path='/Details' component={Details}/>
+                <Route exact path='/' component={Clock1}/>
+                <Route path='/Information'  component={Information1}/>
+                <Route path='/Details' component={Details1}/>
             </Switch>
         </div>
 
